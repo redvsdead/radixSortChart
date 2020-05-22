@@ -18,6 +18,16 @@ namespace radixSortChart
             max = Math.Max(max, num.ToString().Length);
         }
 
+        public int getPow(int sysBase, int pow)
+        {
+            int b = 1;
+            for (int i = 0; i < pow; ++i)
+            {
+                b *= sysBase;
+            }
+            return b;
+        }
+
         public void sorting(char[] arr)
         {
             runTime = DateTime.Now.Ticks;
@@ -34,8 +44,9 @@ namespace radixSortChart
                 //распределение по спискам от 0 до 9
                 for (int i = 0; i < arr.Length; ++i)
                 {
+                    
                     //выделяем цифру на текущей позиции из номера символа и кладем символ в список
-                    int temp = ((int)arr[i] % (int)Math.Pow(sysBase, digNum + 1)) / (int)Math.Pow(sysBase, digNum);
+                    int temp = ((int)arr[i] % getPow(sysBase, digNum + 1)) / getPow(sysBase, digNum);
                     lists[temp].Add(arr[i]);
                 }
                 //сборка массива поразрядно
